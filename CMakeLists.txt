@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 2.8.3)
 project(dataset_ros)
 
 find_package(catkin REQUIRED roslaunch)
-find_package(Armadillo REQUIRED)
 
 catkin_package(
     
