@@ -1,11 +1,9 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(dataset_ros)
 
-find_package(catkin REQUIRED COMPONENTS
-  roslaunch
-  roscpp
-  rospy
-  std_msgs
+find_package(catkin REQUIRED
+  roscpp rospy std_msgs
+  genmsg actionlib_msgs actionlib
 )
 
 
