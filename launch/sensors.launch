@@ -1,0 +1,35 @@
+<launch>
+
+  <arg name="target_frame" default="plate_top_link"/>
+
+  <include file="$(find turtlebot_bringup)" required="true"/>
+ 
+  <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" required="true">
+    <arg name="frame_id" value="$(arg target_frame)"/>
+  </include>
+
+  <node name="pointcloud_to_laserscan_node" pkg="pointcloud_to_laserscan"
+    type="pointcloud_to_laserscan_node" required="true">
+    <remap from="cloud_in" to="/velodyne_points"/>
+    <param name="target_frame" value="$(arg target_frame)"/>
+    <rosparam>
+    transform_tolerance: 0.01
+    min_height: -0.3
+    max_height: 0.3
+    angle_min: -3.14
+    angle_max: 3.14
+    angle_increment: 0.0087 # M_PI/360.0
+    scan_time: 0.3333
+    range_min: 0.05
+    range_max: 100.0
+    use_inf: true
+    </rosparam> 
+  </node>
+
+  <include file="$(fine openni_launch)/launch/openni.launch" required="true">
+    <arg name="depth_registration" value="true"/>
+  </include>
+
+  <node name="AccessPointReader" pkg="manual_measurements" type="measure_iwlist.py" output="screen" required="true"/>
+
+</launch>
