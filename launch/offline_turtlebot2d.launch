@@ -1,5 +1,5 @@
 <launch>
-  <arg name="no_rviz" default="false"/>
+  <arg name="no_rviz" default="true"/>
   <param name="/use_sim_time" value="true" />
 
   <group unless="$(arg no_rviz)">
@@ -14,7 +14,7 @@
       required="$(arg no_rviz)"
       type="cartographer_offline_node" args="
           -configuration_directory $(find dataset_ros)/configuration_files
-          -configuration_basename turtlebot2d.lua
+          -configuration_basenames turtlebot2d.lua
           -bag_filenames $(arg bag_filenames)"
       output="screen">
   </node>
