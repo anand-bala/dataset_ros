@@ -12,7 +12,7 @@ catkin_package(
 )
 
 SET(SCRIPTS
-  nodes/moveforward
+  nodes/moveforward.py
 )
 
 install(DIRECTORY launch configuration_files
