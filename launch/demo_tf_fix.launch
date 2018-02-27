@@ -20,7 +20,7 @@
   <node name="cartographer_node" pkg="cartographer_ros"
       type="cartographer_node" args="
           -configuration_directory
-              $(find cartographer_ros)/configuration_files
+              $(find dataset_ros)/configuration_files
           -configuration_basename turtlebot2d.lua"
       output="screen">
   </node>
@@ -39,7 +39,7 @@
     <remap from="tf_out" to="/tf" />
     <rosparam param="remove_frames">
       - map
-      - odom_combined
+      - odom
     </rosparam>
   </node>
 
