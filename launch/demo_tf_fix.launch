@@ -20,8 +20,8 @@
   <node name="cartographer_node" pkg="cartographer_ros"
       type="cartographer_node" args="
           -configuration_directory
-              $(find dataset_ros)/configuration_files
-          -configuration_basename turtlebot2d.lua"
+              $(find cartographer_ros)/configuration_files
+          -configuration_basename pr2.lua"
       output="screen">
   </node>
 
