@@ -2,9 +2,9 @@
 
   <arg name="target_frame" default="plate_top_link"/>
 
-  <include file="$(find turtlebot_bringup)" required="true"/>
+  <include file="$(find turtlebot_bringup)/launch/minimal.launch"/>
  
-  <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" required="true">
+  <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch">
     <arg name="frame_id" value="$(arg target_frame)"/>
   </include>
 
@@ -26,10 +26,9 @@
     </rosparam> 
   </node>
 
-  <include file="$(fine openni_launch)/launch/openni.launch" required="true">
+  <include file="$(find openni_launch)/launch/openni.launch" required="true">
     <arg name="depth_registration" value="true"/>
   </include>
 
-  <node name="AccessPointReader" pkg="manual_measurements" type="measure_iwlist.py" output="screen" required="true"/>
 
 </launch>
