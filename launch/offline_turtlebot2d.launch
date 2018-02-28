@@ -13,14 +13,9 @@
   <node name="cartographer_offline_node" pkg="cartographer_ros"
       required="$(arg no_rviz)"
       type="cartographer_offline_node" args="
-          -configuration_directory $(find dataset_ros)/configuration_files
-          -configuration_basenames turtlebot2d.lua
+          -configuration_directory $(find cartographer_ros)/configuration_files
+          -configuration_basenames pr2.lua
           -bag_filenames $(arg bag_filenames)"
       output="screen">
-  </node>
-  <node name="flat_world_imu_node" pkg="cartographer_turtlebot"
-        type="cartographer_flat_world_imu_node" output="screen">
-    <remap from="imu_in" to="/mobile_base/sensors/imu_data_raw" />
-    <remap from="imu_out" to="/imu" />
   </node>
 </launch>
