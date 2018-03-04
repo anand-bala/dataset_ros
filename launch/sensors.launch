@@ -30,5 +30,6 @@
     <arg name="depth_registration" value="true"/>
   </include>
 
+  <node name="err_check" pkg="dataset_ros" type="err_check" required="true"/>
 
 </launch>

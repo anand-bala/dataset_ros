@@ -1,0 +1,7 @@
+<library>
+  <class  name="dataset_ros/err_check_nodelet"
+    type="dataset_ros::ErrCheckNodelet"
+    base_class_type="nodelet::Nodelet">
+    <description>Error checking nodelet</description>
+  </class>
+</library>
