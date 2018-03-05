@@ -18,6 +18,6 @@
   <depend>nodelet</depend>
 
   <export>
-    <nodelet plugin="${prefix}/nodelets.xml"/>
+<!--   <nodelet plugin="${prefix}/nodelets.xml"/>-->
   </export>
 </package>
