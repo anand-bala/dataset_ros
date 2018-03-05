@@ -60,14 +60,14 @@ void velodyneCb (const sensor_msgs::PointCloud2ConstPtr &cloud) {
 void apInfoCb (const manual_measurements::WifiInfo &wifi) {
   last_ap1 = ros::Time::now();
   if (wifi.accesspoint.size() < 3) {
-    ROS_ERROR("[APInfo] Something is up! Received only %d AP's", wifi.accesspoint.size());
+    ROS_ERROR("[APInfo] Something is up! Received only %lu AP's", wifi.accesspoint.size());
   }
 }
 
 void apInfo2Cb (const manual_measurements::WifiInfo &wifi) {
   last_ap2 = ros::Time::now();
   if (wifi.accesspoint.size() < 3) {
-    ROS_ERROR("[APInfo2] Something is up! Received only %d AP's", wifi.accesspoint.size());
+    ROS_ERROR("[APInfo2] Something is up! Received only %lu AP's", wifi.accesspoint.size());
   }
 } 
 
