@@ -10,8 +10,8 @@ ros::Subscriber ap2Sub;
 
 ros::Timer ap1Timer;
 ros::Timer ap2Timer;
-static ros::Time last_ap1 = NULL;
-static ros::Time last_ap2 = NULL;
+ros::Time last_ap1;
+ros::Time last_ap2;
 
 void depthCb (const sensor_msgs::ImageConstPtr &depth) {
   static int count = 0;
@@ -59,15 +59,15 @@ void velodyneCb (const sensor_msgs::PointCloud2ConstPtr &cloud) {
 
 void apInfoCb (const manual_measurements::WifiInfo &wifi) {
   last_ap1 = ros::Time::now();
-  if (wifi->accesspoint.size() < 3) {
-    ROS_ERROR("[APInfo] Something is up! Received only %d AP's", wifi->accesspoint.size());
+  if (wifi.accesspoint.size() < 3) {
+    ROS_ERROR("[APInfo] Something is up! Received only %d AP's", wifi.accesspoint.size());
   }
 }
 
 void apInfo2Cb (const manual_measurements::WifiInfo &wifi) {
   last_ap2 = ros::Time::now();
-  if (wifi->accesspoint.size() < 3) {
-    ROS_ERROR("[APInfo2] Something is up! Received only %d AP's", wifi->accesspoint.size());
+  if (wifi.accesspoint.size() < 3) {
+    ROS_ERROR("[APInfo2] Something is up! Received only %d AP's", wifi.accesspoint.size());
   }
 } 
 
