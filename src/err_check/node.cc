@@ -18,8 +18,8 @@ void depthCb (const sensor_msgs::ImageConstPtr &depth) {
   int zero = 0;
   float empty_percent = 0.0;
 
-  if(count >= 1000) {
-    ROS_INFO("Processed 1000 more /camera/depth_registered/image_raw");
+  if(count >= 500) {
+    ROS_INFO("Processed 500 more /camera/depth_registered/image_raw");
     count = 0;
   }
 
@@ -40,8 +40,8 @@ void velodyneCb (const sensor_msgs::PointCloud2ConstPtr &cloud) {
   int zero = 0;
   float empty_percent = 0.0;
 
-  if(count >= 1000) {
-    ROS_INFO("Processed 1000 more /velodyne_points");
+  if(count >= 500) {
+    ROS_INFO("Processed 500 more /velodyne_points");
     count = 0;
   }
 
@@ -59,16 +59,28 @@ void velodyneCb (const sensor_msgs::PointCloud2ConstPtr &cloud) {
 
 void apInfoCb (const manual_measurements::WifiInfo &wifi) {
   last_ap1 = ros::Time::now();
+	static int count = 0;
   if (wifi.accesspoint.size() < 3) {
     ROS_ERROR("[APInfo] Something is up! Received only %lu AP's", wifi.accesspoint.size());
   }
+  if (count > 20) {
+	ROS_INFO("[APInfo] Got 20 more");
+	count = 0;
+  }
+  count++;
 }
 
 void apInfo2Cb (const manual_measurements::WifiInfo &wifi) {
   last_ap2 = ros::Time::now();
+  static int count = 0;
   if (wifi.accesspoint.size() < 3) {
     ROS_ERROR("[APInfo2] Something is up! Received only %lu AP's", wifi.accesspoint.size());
   }
+  if (count > 5) {
+	ROS_INFO("[APInfo] Got 5 more");
+	count = 0;
+  }
+  count++;
 } 
 
 void ap1TimerCb (const ros::TimerEvent& e) {
@@ -81,7 +93,7 @@ void ap1TimerCb (const ros::TimerEvent& e) {
 
 void ap2TimerCb (const ros::TimerEvent& e) {
   ros::Time cur = e.current_real;
-  ros::Duration diff(2.0);
+  ros::Duration diff(5.0);
   if(cur - last_ap2 > diff) {
     ROS_ERROR("Haven't recieved an APInfo2 for more than 2 second!");
   }
@@ -101,8 +113,8 @@ int main (int argc, char **argv) {
   ap1Sub = nh.subscribe("/APInfo", 5, &apInfoCb);
   ap2Sub = nh.subscribe("/APInfo2", 5, &apInfo2Cb);
 
-  ap1Timer = nh.createTimer(ros::Duration(0.5), ap1TimerCb);
-  ap2Timer = nh.createTimer(ros::Duration(0.5), ap2TimerCb);
+  ap1Timer = nh.createTimer(ros::Duration(1.0), ap1TimerCb);
+  ap2Timer = nh.createTimer(ros::Duration(2.0), ap2TimerCb);
 
   ros::spin();
   return 0;
