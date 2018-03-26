@@ -4,10 +4,14 @@ project(dataset_ros)
 set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
 
 set(PACKAGE_DEPS 
-  roscpp rospy std_msgs
-  geometry_msgs sensor_msgs
+  roscpp
+  rospy 
+  std_msgs
+  geometry_msgs 
+  sensor_msgs
   nodelet
-  cartographer_ros manual_measurements)
+  cartographer_ros 
+  manual_measurements)
 
 set(PYTHON_SCRIPTS
   scripts/extract_trajectory.py)
@@ -28,6 +32,7 @@ include_directories(
   include
   ${catkin_INCLUDE_DIRS})
 
+
 add_library(err_check_nodelet src/err_check/nodelet.cc)
 target_link_libraries(err_check_nodelet ${catkin_LIBRARIES})
 
@@ -36,6 +41,7 @@ target_link_libraries(err_check ${catkin_LIBRARIES})
 
 add_executable(dump_trajectory src/dump_trajectory.cc)
 target_link_libraries(dump_trajectory ${catkin_LIBRARIES})
+target_link_libraries(dump_trajectory PUBLIC cartographer)
 add_dependencies(dump_trajectory ${catkin_EXPORTED_TARGETS})
 set(TARGET_COMPILE_FLAGS "${TARGET_COMPILE_FLAGS} ${GOOG_CXX_FLAGS}")
 set_target_properties(dump_trajectory PROPERTIES 
