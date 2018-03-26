@@ -16,6 +16,8 @@
   <depend>geometry_msgs</depend>
 
   <depend>nodelet</depend>
+  <depend>cartographer_ros</depend>
+  <depend>manual_measurements</depend>
 
   <export>
 <!--   <nodelet plugin="${prefix}/nodelets.xml"/>-->
