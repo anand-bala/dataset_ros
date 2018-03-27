@@ -1,0 +1,10 @@
+<launch>
+  <arg name="outfile" default="trajectory.csv"/>
+  <node name="dump_trajectory" pkg="dataset_ros"
+    required="true"
+    type="dump_trajectory" args="
+          -pbfile $(arg pbfile)
+          -outfile $(arg outfile)"
+    output="screen">
+  </node>
+</launch>
