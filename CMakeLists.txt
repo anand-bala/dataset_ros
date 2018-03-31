@@ -40,8 +40,7 @@ add_executable(err_check src/err_check/node.cc)
 target_link_libraries(err_check ${catkin_LIBRARIES})
 
 add_executable(dump_trajectory src/dump_trajectory.cc)
-target_link_libraries(dump_trajectory ${catkin_LIBRARIES})
-target_link_libraries(dump_trajectory PUBLIC cartographer)
+target_link_libraries(dump_trajectory ${catkin_LIBRARIES} cartographer)
 add_dependencies(dump_trajectory ${catkin_EXPORTED_TARGETS})
 set(TARGET_COMPILE_FLAGS "${TARGET_COMPILE_FLAGS} ${GOOG_CXX_FLAGS}")
 set_target_properties(dump_trajectory PROPERTIES 
