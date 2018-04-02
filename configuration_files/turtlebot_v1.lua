@@ -19,11 +19,14 @@ options = {
   map_builder = MAP_BUILDER,
   trajectory_builder = TRAJECTORY_BUILDER,
   map_frame = "map",
-  tracking_frame = "gyro_link",
-  published_frame = "base_link",
+  tracking_frame = "base_footprint",
+  published_frame = "base_footprint",
   odom_frame = "odom",
-  provide_odom_frame = false,
-  use_odometry = true,
+  provide_odom_frame = true,
+  publish_frame_projected_to_2d = false,
+  use_odometry = false,
+  use_nav_sat = false,
+  use_landmarks = false,
   num_laser_scans = 1,
   num_multi_echo_laser_scans = 0,
   num_subdivisions_per_laser_scan = 1,
@@ -34,7 +37,9 @@ options = {
   trajectory_publish_period_sec = 30e-3,
   rangefinder_sampling_ratio = 1.,
   odometry_sampling_ratio = 1.,
+  fixed_frame_pose_sampling_ratio = 1.,
   imu_sampling_ratio = 1.,
+  landmarks_sampling_ratio = 1.,
 }
 
 MAP_BUILDER.use_trajectory_builder_2d = true
@@ -44,6 +49,6 @@ TRAJECTORY_BUILDER_2D.use_imu_data = false
 TRAJECTORY_BUILDER_2D.real_time_correlative_scan_matcher.linear_search_window = 0.15
 TRAJECTORY_BUILDER_2D.real_time_correlative_scan_matcher.angular_search_window = math.rad(35.)
 
-SPARSE_POSE_GRAPH.optimization_problem.huber_scale = 1e2
+POSE_GRAPH.optimization_problem.huber_scale = 1e2
 
 return options
