@@ -1,12 +1,11 @@
 <launch>
   <param name="/use_sim_time" value="true" />
 
-  <arg name="save_file" default="cartographer-session"/>
-
   <node name="cartographer_node" pkg="cartographer_ros"
         type="cartographer_node" args="
           -configuration_directory $(find dataset_ros)/configuration_files
-          -configuration_basename turtlebot2d.lua"
+          -configuration_basename localize_turtlebot2d.lua
+          -load_state_filename $(arg load_state_filename)"
         output="screen">
   </node>
 
@@ -15,5 +14,7 @@
 
   <node name="rviz" pkg="rviz" type="rviz"
       args="-d $(find cartographer_ros)/configuration_files/demo_2d.rviz" />
-  
+
+  <node name="bagplayer" pkg="rosbag" type="play"
+      args="--clock $(arg bag_filename)"/>
 </launch>
