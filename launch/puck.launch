@@ -8,7 +8,7 @@
   <node name="cartographer_node" pkg="cartographer_ros"
         type="cartographer_node" args="
           -configuration_directory $(find dataset_ros)/configuration_files
-          -configuration_basename turtle2.lua"
+          -configuration_basename puck.lua"
         output="screen">
   </node>
 
